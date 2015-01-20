@@ -6,11 +6,10 @@ echo $pwddir
 cd $CMSSW_BASE/src
 source  /afs/cern.ch/cms/cmsset_default.sh
 eval `scram runtime -sh`
-curl  -s https://raw.githubusercontent.com/MiheeJo/MCConfigs/master/pAWinter13Fixed/VtxChange.py --retry 2 --create-dirs -o  Configuration/GenProduction/python/HI/VtxChange.py
 curl  -s https://raw.githubusercontent.com/MiheeJo/MCConfigs/master/pAWinter13Fixed/PYTHIA6_JPsiWithFSR_tuneD6T_5TeV02_v2_cff.py --retry 2 --create-dirs -o  Configuration/GenProduction/python/HI/PYTHIA6_JPsiWithFSR_tuneD6T_5TeV02_v2_cff.py
 
 scram b
 cd $pwddir
-cmsDriver.py Configuration/GenProduction/python/HI/PYTHIA6_JPsiWithFSR_tuneD6T_5TeV02_v2_cff.py --fileout file:HIN-pAWinter13-JPsiWithFSR_5TeV02.root --mc --eventcontent RAWSIM --pileup NoPileUp --datatier GEN-SIM --conditions STARTHI53_V27::All --beamspot Realistic8TeVCollisionPPbBoost --step GEN,SIM --datamix NODATAMIXER --python_filename HIN-pAWinter13-JPsiWithFSR_5TeV02_1_cfg.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring,Configuration/GenProduction/HI/VtxChange.customiseVtxSmeared -n 100 || exit $? ; 
+cmsDriver.py Configuration/GenProduction/python/HI/PYTHIA6_JPsiWithFSR_tuneD6T_5TeV02_v2_cff.py --fileout file:HIN-pAWinter13-JPsiWithFSR_5TeV02.root --mc --eventcontent RAWSIM --pileup NoPileUp --datatier GEN-SIM --conditions STARTHI53_V27::All --beamspot Realistic5TeVPPbBoost --step GEN,SIM --datamix NODATAMIXER --python_filename HIN-pAWinter13-JPsiWithFSR_5TeV02_1st_cfg.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring,GeneratorInterface/HiGenCommon/customiseSwapVtxSmearAndProdFilter_cfi.customiseSwapVtxSmearAndProdFilter -n 100 || exit $? ; 
 
 
